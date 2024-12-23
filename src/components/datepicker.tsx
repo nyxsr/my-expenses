@@ -39,7 +39,7 @@ export default function DatePicker(props: DatePickerProps) {
   }, [date]);
 
   return (
-    <Popover>
+    <Popover modal>
       <PopoverTrigger asChild>
         <Button
           variant={'outline'}

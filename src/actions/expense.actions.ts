@@ -2,7 +2,7 @@
 
 import { db } from '@/db';
 import { Expense, ExpenseInsert } from '@/db/schemas/expense';
-import { desc } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 
 export async function getTransactions(params?: {
@@ -18,9 +18,9 @@ export async function getTransactions(params?: {
   return transactions;
 }
 
-export async function getAllTransactions() {
+export async function getAllTransactions(nameOnly = false) {
   const transactions = await db
-    .select()
+    .select(nameOnly ? { name: Expense.name } : {})
     .from(Expense)
     .orderBy(desc(Expense.transactionDate));
   return transactions;
@@ -96,5 +96,10 @@ export async function addTransaction(payload: ExpenseInsert) {
       updatedAt: new Date().toISOString(),
     },
   ]);
+  revalidatePath('/');
+}
+
+export async function deleteTransaction(id: number) {
+  await db.delete(Expense).where(eq(Expense.id, id));
   revalidatePath('/');
 }
