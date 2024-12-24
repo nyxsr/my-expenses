@@ -46,7 +46,7 @@ export default function Home() {
       </div>
       <div className="my-4 px-3">
         <h2 className="font-semibold">Transaksi baru-baru ini</h2>
-        <div className="my-4 flex max-h-[20rem] flex-col overflow-y-auto">
+        <div className="my-4 flex max-h-[20rem] flex-col overflow-y-auto overflow-x-hidden">
           {isLoading ? (
             <span className="py-10 text-center text-sm text-muted-foreground">
               Memuat...
