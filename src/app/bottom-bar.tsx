@@ -6,8 +6,13 @@ import Link from 'next/link';
 import ProfileMenu from './profile-menu';
 import ButtonDialog from '@/components/button-dialog';
 import AddTransactionDialog from './add-transaction-dialog';
+import { usePathname } from 'next/navigation';
 
 export default function BottomBar() {
+  const pathname = usePathname();
+
+  if (['/login', '/signup'].includes(pathname)) return null;
+
   return (
     <>
       <div className="sticky inset-x-auto bottom-0 mx-auto w-full max-w-[500px] border-t bg-white px-6 py-2">

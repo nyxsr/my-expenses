@@ -1,0 +1,1 @@
+ALTER TABLE `expenses` ADD `createdBy` integer NOT NULL REFERENCES users(id);

@@ -26,6 +26,7 @@ import { DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import TransactionSelector from '@/components/transaction-selector';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
+import useAuthStore from '@/lib/store/useAuth';
 
 const OTHER_TRANSACTION_NAME = 'Lainnya';
 
@@ -60,6 +61,7 @@ export default function AddTransactionDialog({
   const form = useForm<AddTransactionForm>({
     resolver: zodResolver(addTransactionSchema),
   });
+  const { id: userId } = useAuthStore();
 
   const queryClient = useQueryClient();
 
@@ -71,6 +73,7 @@ export default function AddTransactionDialog({
             ? (data.newName as string)
             : String(data.name),
         amount: data.amount,
+        createdBy: userId,
         createdAt: new Date().toISOString(),
         transactionDate: data.transactionDate,
         type: data.type,

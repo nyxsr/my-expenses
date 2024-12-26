@@ -1,0 +1,1 @@
+ALTER TABLE `sessions` ADD `isActive` integer DEFAULT 1 NOT NULL;

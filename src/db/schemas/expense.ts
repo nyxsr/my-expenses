@@ -1,4 +1,5 @@
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { User } from './user';
 
 export const Expense = sqliteTable('expenses', {
   id: integer('id').primaryKey({ autoIncrement: true }),
@@ -6,9 +7,12 @@ export const Expense = sqliteTable('expenses', {
   amount: integer('amount').notNull(),
   type: text('type').notNull(),
   transactionDate: text('transactionDate').notNull(),
-  createdAt: text('createdAt').notNull(),
-  updatedAt: text('updatedAt')
+  createdBy: integer('createdBy')
     .notNull()
+    .references(() => User.id, { onDelete: 'cascade' }),
+  createdAt: text('createdAt').$defaultFn(() => new Date().toISOString()),
+  updatedAt: text('updatedAt')
+    .$defaultFn(() => new Date().toISOString())
     .$onUpdateFn(() => new Date().toISOString()),
 });
 

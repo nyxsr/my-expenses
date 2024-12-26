@@ -1,3 +1,4 @@
+import AuthProtector from '../auth-protector';
 import { TooltipProvider } from '../ui/tooltip';
 import { QueryProvider } from './query-provider';
 import { ThemeProvider } from './theme-provider';
@@ -13,7 +14,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         disableTransitionOnChange
       >
         <Toaster />
-        <TooltipProvider>{children}</TooltipProvider>
+        <TooltipProvider>
+          <AuthProtector>{children}</AuthProtector>
+        </TooltipProvider>
       </ThemeProvider>
     </QueryProvider>
   );

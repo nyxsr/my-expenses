@@ -92,6 +92,7 @@ export async function addTransaction(payload: ExpenseInsert) {
       amount: payload.amount,
       type: payload.type,
       transactionDate: payload.transactionDate,
+      createdBy: payload.createdBy,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },

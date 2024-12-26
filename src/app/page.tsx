@@ -8,6 +8,7 @@ import {
 import TransactionItem from './transaction-item';
 import HeadBar from './head-bar';
 import { useQuery } from '@tanstack/react-query';
+import AuthProtector from '@/components/auth-protector';
 
 export default function Home() {
   const {
