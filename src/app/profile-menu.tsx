@@ -28,9 +28,9 @@ export default function ProfileMenu() {
             <Avatar className="h-5 w-5">
               <AvatarImage
                 src={`https://api.dicebear.com/9.x/big-smile/svg?seed=${getNameInitials(name)}`}
-                alt="@shadcn"
+                alt={name}
               />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>{getNameInitials(name)}</AvatarFallback>
             </Avatar>
             <span>Hi, {name.split(' ')[0]}</span>
           </span>
@@ -50,7 +50,7 @@ export default function ProfileMenu() {
         <CommandItem className="data-[selected=true]:bg-red-500/10">
           <ButtonDialog
             trigger={
-              <div className="flex items-center gap-2">
+              <div className="flex w-full items-center gap-2">
                 <Power />
                 <span>Keluar</span>
               </div>
